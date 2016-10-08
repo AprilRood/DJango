@@ -1,0 +1,30 @@
+<html>
+<h1>Book Authors</h1>
+<h2>One Book can have many authors.  One author can have written/cowritten many books.</h2>
+
+
+
+<form action="{% url 'createAuthor' %}" method="post">{% csrf_token %}
+	<table>
+		
+		<tr><td>Author Name: <input type="text" name="name"></td></tr>
+
+		<tr><td><input type="submit" class="button" value="Create Author"></td></tr>
+	</table>
+</form>
+
+{% for author in all_authors %}
+	<p>{{author.name}} : {{author.book.title}}</p>	
+{% endfor %}
+
+
+<form action="{% url 'addBook' %}" method="post">{% csrf_token %}
+	<table>
+		<h2>Book Written
+		<tr><td>Title: <input type="text" name="title"></td></tr>
+		<tr><td>Author To Add: <input type="text" name="author_name"></td></tr>
+		<tr><td><input type="submit" class="button" value="Add Book"></td></tr>
+	</table>
+</form>
+
+</html>	
